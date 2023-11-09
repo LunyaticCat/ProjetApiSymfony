@@ -10,5 +10,5 @@
 ###< symfony/framework-bundle ###
 ###> etc ###
 /.idea
-/.env
+.env
 ###< etc ###
