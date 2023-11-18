@@ -1,3 +1,0 @@
-properties:
-    'ApiPlatform\Metadata\Tests\Fixtures\ApiResource\FileConfigDummy':
-        'foo': 'invalid'
