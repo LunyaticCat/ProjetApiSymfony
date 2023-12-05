@@ -1,1 +1,5 @@
-
+# Dans config/packages/api_platform.yaml
+api_platform:
+  defaults:
+    pagination_items_per_page: 30 # Pour changer le nombre de ressources renvoyées si la pagination est activée
+    pagination_enabled: false # Active ou désactive la pagination

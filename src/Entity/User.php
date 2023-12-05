@@ -3,27 +3,55 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\UserRepository;
+use App\State\UtilisateurProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ApiResource]
+#[UniqueEntity('login', message : "Cette valeur est déjà prise!")]
+#[UniqueEntity('adresseEmail', message : "Cette email est déjà prise!")]
+#[ApiResource(operations: [
+    new GetCollection(),
+    new Get(),
+    new Post(processor: UtilisateurProcessor::class),
+    new Delete(),
+    new Patch(processor: UtilisateurProcessor::class),
+],
+    normalizationContext: ["groups" => ["utilisateur:read"]],
+
+)]
 class User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['utilisateur:read'])]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 4, max: 20, minMessage: 'Il faut au moins 4 caractères', maxMessage: 'Il faut moins de 20 caractères')]
+    #[Groups(['utilisateur:read'])]
     private ?string $login = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Email(message:'Addresse email non valide')]
+    #[Groups(['utilisateur:read'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -34,6 +62,9 @@ class User
 
     #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: HasRole::class)]
     private Collection $hasRoles;
+
+    #[ORM\Column]
+    private ?bool $isPremium = null;
 
     public function __construct()
     {
@@ -150,6 +181,18 @@ class User
                 $hasRole->setIdUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsPremium(): ?bool
+    {
+        return $this->isPremium;
+    }
+
+    public function setIsPremium(bool $isPremium): static
+    {
+        $this->isPremium = $isPremium;
 
         return $this;
     }

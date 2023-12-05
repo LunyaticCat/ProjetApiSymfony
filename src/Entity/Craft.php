@@ -2,15 +2,25 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CraftRepository;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CraftRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new Post(),
+        new Patch()
+    ]
+)]
 class Craft
 {
     #[ORM\Id]
@@ -26,6 +36,7 @@ class Craft
     private ?User $idCreator = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ApiProperty(writable: false)]
     private ?\DateTimeInterface $dateCreation = null;
 
     #[ORM\OneToMany(mappedBy: 'idCraft', targetEntity: ItemGroup::class, orphanRemoval: true)]
@@ -75,6 +86,11 @@ class Craft
         $this->dateCreation = $dateCreation;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function prePersistDateCreation() : void {
+        $this->dateCreation = new \DateTime();
     }
 
     /**
