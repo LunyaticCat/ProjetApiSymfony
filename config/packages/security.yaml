@@ -16,8 +16,21 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            lazy: true
+            #L'application est sans état (pas de session)
+            stateless: true
+            #Le nom du provider que nous avons configuré plus tôt
             provider: app_user_provider
+            json_login:
+                #Le nom de la route d'authentification
+                check_path: auth
+                #La propriété correspondant au login dans notre entité
+                username_path: login
+                #La propriété correspondant au mot de passe (haché) dans notre entité
+                password_path: password
+                #Les services qui gèrent le succès ou l'échec d'authentification
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            jwt: ~
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
