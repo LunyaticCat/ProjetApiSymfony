@@ -44,8 +44,8 @@ class User
     #[Groups(['utilisateur:read'])]
     private ?string $login = null;
 
-//    #[ORM\Column(length: 255)]
-//    private ?string $password = null;
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
 
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotNull]
@@ -89,17 +89,17 @@ class User
         return $this;
     }
 
-//    public function getPassword(): ?string
-//    {
-//        return $this->password;
-//    }
-//
-//    public function setPassword(string $password): static
-//    {
-//        $this->password = $password;
-//
-//        return $this;
-//    }
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
 
     public function getEmail(): ?string
     {
