@@ -12,13 +12,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CraftRepository::class)]
 #[ApiResource(
     operations: [
-        new Get(),
-        new Post(),
-        new Patch()
+        new Get()
     ]
 )]
 class Craft
@@ -32,7 +32,9 @@ class Craft
     #[ORM\JoinColumn(nullable: false)]
     private ?Item $idResult = null;
 
-    #[ORM\ManyToOne(inversedBy: 'crafts')]
+    #[ORM\ManyToOne(fetch: "EAGER", inversedBy: 'crafts')]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     private ?User $idCreator = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

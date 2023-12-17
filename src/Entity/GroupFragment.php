@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use App\Repository\GroupFragmentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GroupFragmentRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get()
+    ]
+)]
 class GroupFragment
 {
     #[ORM\Id]

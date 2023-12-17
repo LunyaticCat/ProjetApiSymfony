@@ -44,8 +44,8 @@ class User
     #[Groups(['utilisateur:read'])]
     private ?string $login = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
+//    #[ORM\Column(length: 255)]
+//    private ?string $password = null;
 
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotNull]
@@ -64,7 +64,7 @@ class User
     private Collection $hasRoles;
 
     #[ORM\Column]
-    private ?bool $isPremium = null;
+    private ?bool $premium = null;
 
     public function __construct()
     {
@@ -89,17 +89,17 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
+//    public function getPassword(): ?string
+//    {
+//        return $this->password;
+//    }
+//
+//    public function setPassword(string $password): static
+//    {
+//        $this->password = $password;
+//
+//        return $this;
+//    }
 
     public function getEmail(): ?string
     {
@@ -185,14 +185,14 @@ class User
         return $this;
     }
 
-    public function isIsPremium(): ?bool
+    public function isPremium(): ?bool
     {
-        return $this->isPremium;
+        return $this->premium;
     }
 
-    public function setIsPremium(bool $isPremium): static
+    public function setPremium(bool $premium): static
     {
-        $this->isPremium = $isPremium;
+        $this->premium = $premium;
 
         return $this;
     }
