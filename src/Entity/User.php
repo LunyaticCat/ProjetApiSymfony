@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
-    new Post(processor: UtilisateurProcessor::class),
+    new Post(processor: UtilisateurProcessor::class, ),
     new Delete(),
     new Patch(processor: UtilisateurProcessor::class),
 ],
