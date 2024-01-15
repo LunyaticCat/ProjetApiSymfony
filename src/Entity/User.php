@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
-    new Post(processor: UtilisateurProcessor::class),
+    new Post(processor: UtilisateurProcessor::class, ),
     new Delete(),
     new Patch(processor: UtilisateurProcessor::class),
 ],
@@ -64,7 +64,7 @@ class User
     private Collection $hasRoles;
 
     #[ORM\Column]
-    private ?bool $isPremium = null;
+    private ?bool $premium = null;
 
     public function __construct()
     {
@@ -185,14 +185,14 @@ class User
         return $this;
     }
 
-    public function isIsPremium(): ?bool
+    public function isPremium(): ?bool
     {
-        return $this->isPremium;
+        return $this->premium;
     }
 
-    public function setIsPremium(bool $isPremium): static
+    public function setPremium(bool $premium): static
     {
-        $this->isPremium = $isPremium;
+        $this->premium = $premium;
 
         return $this;
     }

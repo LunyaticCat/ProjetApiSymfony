@@ -4,21 +4,29 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\CraftRepository;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
+use App\State\CraftProcessor;
+use App\State\UtilisateurProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CraftRepository::class)]
 #[ApiResource(
     operations: [
+        new GetCollection(),
         new Get(),
-        new Post(),
-        new Patch()
+        new Patch(),
+        new Post(security: "is_granted('ROLE_USER')", processor: CraftProcessor::class),
+        new Delete(security: "is_granted('ROLE_USER') and object.getOwner() == user")
     ]
 )]
 class Craft
@@ -32,7 +40,8 @@ class Craft
     #[ORM\JoinColumn(nullable: false)]
     private ?Item $idResult = null;
 
-    #[ORM\ManyToOne(inversedBy: 'crafts')]
+    #[ORM\ManyToOne(fetch: "EAGER", inversedBy: 'crafts')]
+    #[ApiProperty(writable: false)]
     private ?User $idCreator = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
