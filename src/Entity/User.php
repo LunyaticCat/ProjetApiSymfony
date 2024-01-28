@@ -20,8 +20,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity('login', message : "Cette valeur est déjà prise!")]
-#[UniqueEntity('email', message : "Cette email est déjà prise!")]
+#[UniqueEntity('login', message: "Cette valeur est déjà prise!")]
+#[UniqueEntity('email', message: "Cette email est déjà prise!")]
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
@@ -29,7 +29,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     new Delete(),
     new Patch(processor: UtilisateurProcessor::class),
 ],
-    normalizationContext: ["groups" => ["utilisateur:read"]],
+    normalizationContext: ["groups" => ["user:read"]],
 
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -37,14 +37,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['utilisateur:read'])]
+    #[Groups(['user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotNull]
     #[Assert\NotBlank]
     #[Assert\Length(min: 4, max: 20, minMessage: 'Il faut au moins 4 caractères', maxMessage: 'Il faut moins de 20 caractères')]
-    #[Groups(['utilisateur:read'])]
+    #[Groups(['user:read'])]
     private ?string $login = null;
 
     #[ORM\Column(length: 255)]
@@ -62,8 +62,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\Email(message:'Addresse email non valide')]
-    #[Groups(['utilisateur:read'])]
+    #[Assert\Email(message: 'Addresse email non valide')]
+    #[Groups(['user:read'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -99,7 +99,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->plainPassword = $plainPassword;
     }
-
 
 
     public function getId(): ?int
@@ -243,6 +242,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        return (string) $this->login;
+        return (string)$this->login;
     }
 }

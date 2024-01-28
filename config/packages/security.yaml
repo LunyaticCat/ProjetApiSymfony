@@ -8,7 +8,7 @@ security:
         app_user_provider:
             entity:
                 #Entité représentant nos utilisateurs
-                class: App\Entity\Utilisateur
+                class: App\Entity\User
                 #La propriété avec laquelle l'utilisateur s'identifie
                 property: login
     firewalls:
