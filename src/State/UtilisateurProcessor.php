@@ -26,6 +26,6 @@ class UtilisateurProcessor implements ProcessorInterface
         $this->passwordHasher->hashPassword($data,$data->getPlainPassword());
         $data->eraseCredentials();
         //Sauvegarde en base
-        $this->persistProcessor->process($this->passwordHasher, $operation, $uriVariables, $context);
+        $this->persistProcessor->process($data, $operation, $uriVariables, $context);
     }
 }
