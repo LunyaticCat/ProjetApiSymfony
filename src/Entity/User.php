@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -14,11 +15,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity('login', message : "Cette valeur est déjà prise!")]
-#[UniqueEntity('adresseEmail', message : "Cette email est déjà prise!")]
+#[UniqueEntity('email', message : "Cette email est déjà prise!")]
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
@@ -29,7 +32,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ["groups" => ["utilisateur:read"]],
 
 )]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -45,7 +48,16 @@ class User
     private ?string $login = null;
 
     #[ORM\Column(length: 255)]
+    #[ApiProperty(readable: false, writable: false)]
     private ?string $password = null;
+
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 4, max: 30, minMessage: 'Il faut au moins 4 caractères', maxMessage: 'Il faut moins de 30 caractères')]
+    #[Assert\Regex(
+        pattern: "#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$#",
+        message: 'Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre')]
+    private ?string $plainPassword;
 
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotNull]
@@ -71,6 +83,24 @@ class User
         $this->crafts = new ArrayCollection();
         $this->hasRoles = new ArrayCollection();
     }
+
+    /**
+     * @return ?string $plainPassword
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param String $plainPassword
+     */
+    public function setPlainPassword(string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+
 
     public function getId(): ?int
     {
@@ -195,5 +225,24 @@ class User
         $this->premium = $premium;
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        //à partir de getHasRoles() on récupère les roles
+        $roles = $this->getHasRoles()->map(function (HasRole $hasRole) {
+            return $hasRole->getIdRole()->getNameRole();
+        })->toArray();
+        return $roles;
+    }
+
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->login;
     }
 }
