@@ -3,7 +3,7 @@ Ceci est le ReadMe contenant des informations sur le projet afin de faciliter so
 
 Liens des projets déployé
 -
-  - BackEnd (API) : https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api
+  - BackEnd (API) : https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api
   - My Avatar     : https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/index
   - FrontEnd      : https://webinfo.iutmontp.univ-montp2.fr/~depeyreg/ProjetFrontSymfony/
 
