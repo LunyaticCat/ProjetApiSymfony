@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\CraftRepository;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
@@ -21,7 +22,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CraftRepository::class)]
 #[ApiResource(
     operations: [
+        new GetCollection(),
         new Get(),
+        new Patch(),
         new Post(security: "is_granted('ROLE_USER')", processor: CraftProcessor::class),
         new Delete(security: "is_granted('ROLE_USER') and object.getOwner() == user")
     ]
