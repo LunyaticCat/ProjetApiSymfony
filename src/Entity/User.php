@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity('login', message : "Cette valeur est déjà prise!")]
-#[UniqueEntity('adresseEmail', message : "Cette email est déjà prise!")]
+#[UniqueEntity('email', message : "Cette email est déjà prise!")]
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
