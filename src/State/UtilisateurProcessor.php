@@ -4,7 +4,7 @@ namespace App\State;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Entity\Utilisateur;
+use App\Entity\User;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -21,7 +21,7 @@ class UtilisateurProcessor implements ProcessorInterface
     {
         //Modification des données de $data
         /**
-         * @var $data Utilisateur
+         * @var $data User
          */
         $this->passwordHasher->hashPassword($data,$data->getPlainPassword());
         $data->eraseCredentials();
