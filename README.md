@@ -23,7 +23,7 @@ amené pourrai conduire à une explosion exponnentiel du nombre de craft stocké
 Présentation de l'API
 -
 (expliquer le système mis en place pour la bd et quels chemin utiliser)
-L'API repose sur une conceptialisation de la base de donnée dans la quel un craft d'item correspond enfait à un item_group definissent si l'objet est un item permettant le craft (table de craft) ou un composant quelconque.
+L'API repose sur une conceptialisation de la base de donnée dans la quel un craft d'item correspond en fait à un item_group definissent si l'objet est un item permettant le craft (table de craft) ou un composant quelconque.
 ensuite un group_fragment viens lier chaque item à leurs groupes et leurs attribut le nombre requis pour le craft. enfin le craft lie l'utilisateur qui a créer un craft à ce dernier et l'item qui lui est associé.
 on peux faire ces manipulations dans l'ordre avec les liens suivants :
 ```
@@ -37,6 +37,7 @@ on peux faire ces manipulations dans l'ordre avec les liens suivants :
 
 Présentation du Front
 -
+La majeur partie du front se compose de requetes à l'api avec une interface. Le code pour l'affichage une famille d'items (ItemTree.vue) présente un interet particulier, il s'agit d'afficher de manière récursive un arbre de construction d'objet. Les fonctions qui gèrent les appels à l'api sont rassembler dans des classes dans les composents du projet. La connection avec Grafana se fait par un hash d'email grace au plugin md5.
 
 
 Présentation de MyAvatar
@@ -55,7 +56,7 @@ Si le paramètre de la route est mauvais, ou que l'utilisateur n'existe pas, une
 
 Récapitulatif de l'investissement
 -
-- Gatien c'est consacré au front et a permis l'ajout de ces fonctionnalités ainsi qu'à créer une installateur pour que chaque membre puisse l'installer localement sans difficulté.
+- Gatien c'est consacré au front et a permis l'ajout de ces fonctionnalités ainsi qu'à créer une installateur pour que chaque membre puisse l'installer localement sans difficulté. A aussi tenté infrucueusement de s'occuper de la gestion du projet. Organisation des réunions et suivi du github Project. 
 - Gatien et Yann on pu conçevoir la structure de la base de donnée.
 - Yann a pu assister sur le refactoring du code du front et revoir sa charte graphique CSS, mettre en place la base de donnée conceptualisé sur l'API, et commencer le système de mot de passe de l'API.
   Il a également étais responsable de préparer le rendu des projets.
