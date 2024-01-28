@@ -58,8 +58,8 @@ Récapitulatif de l'investissement
 -
 - Gatien c'est consacré au front et a permis l'ajout de ces fonctionnalités ainsi qu'à créer une installateur pour que chaque membre puisse l'installer localement sans difficulté. A aussi tenté infrucueusement de s'occuper de la gestion du projet. Organisation des réunions et suivi du github Project. 
 - Gatien et Yann on pu conçevoir la structure de la base de donnée.
-- Yann a pu assister sur le refactoring du code du front et revoir sa charte graphique CSS, mettre en place la base de donnée conceptualisé sur l'API, et commencer le système de mot de passe de l'API.
-  Il a également étais responsable de préparer le rendu des projets.
+- Yann a pu assister sur le refactoring du code du front et revoir sa charte graphique CSS, mettre en place la base de donnée conceptualisé sur l'API, et commencer le système de mot de passe de l'API puis à contribué au débugage de ce dernier.
+  Il a également étais responsable de préparer le rendu des projets et a fait l'intégration du projet MyAvatar au projet Front.
 - Joffrey c'est consacré à la mise en place du projet MyAvatar et a ajouté la fonctionnalité de création et de lecture des images de profils sur ce dernier.
 - Alexis a pu finir le système de mot de passe de l'API.
 
