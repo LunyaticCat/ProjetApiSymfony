@@ -65,12 +65,12 @@ Récapitulatif de l'investissement
 
 Identifiants de compte (il faut récupérer le code d'alexis puis ajouter les mot de passes à cette partie)
 -
-(Admin)
-  username : test
-  password : ``1Bze@``
-(User)
-  username : testa
-  password : ``1Bze@``
+(Admin)<br>
+  username : ``test``<br>
+  password : ``1Bze@``<br>
+(User)<br>
+  username : ``testa``<br>
+  password : ``1Bze@``<br>
 
 Indications supplémentaire
 -
