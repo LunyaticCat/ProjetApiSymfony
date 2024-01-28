@@ -65,9 +65,12 @@ Récapitulatif de l'investissement
 
 Identifiants de compte (il faut récupérer le code d'alexis puis ajouter les mot de passes à cette partie)
 -
-  - ecaflip
-  - sram
-  - eniripsa
+(Admin)
+  username : test
+  password : ``1Bze@``
+(User)
+  username : testa
+  password : ``1Bze@``
 
 Indications supplémentaire
 -
