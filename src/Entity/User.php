@@ -25,9 +25,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(operations: [
     new GetCollection(),
     new Get(),
-    new Post(processor: UtilisateurProcessor::class),
+    new Post(validationContext: ["groups" => ["user:create"]], processor: UtilisateurProcessor::class),
     new Delete(),
-    new Patch(processor: UtilisateurProcessor::class),
+    new Patch(validationContext: ["groups" => ["user:update"]],processor: UtilisateurProcessor::class),
 ],
     normalizationContext: ["groups" => ["user:read"]],
 
@@ -41,8 +41,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[Assert\NotNull]
-    #[Assert\NotBlank]
+    #[Assert\NotNull(groups: ['user:create'])]
+    #[Assert\NotBlank(groups: ['user:create'])]
     #[Assert\Length(min: 4, max: 20, minMessage: 'Il faut au moins 4 caractères', maxMessage: 'Il faut moins de 20 caractères')]
     #[Groups(['user:read'])]
     private ?string $login = null;
@@ -51,17 +51,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ApiProperty(readable: false, writable: false)]
     private ?string $password = null;
 
-    #[Assert\NotNull]
-    #[Assert\NotBlank]
+    #[Assert\NotNull(groups: ['user:create'])]
+    #[Assert\NotBlank(groups: ['user:create'])]
     #[Assert\Length(min: 4, max: 30, minMessage: 'Il faut au moins 4 caractères', maxMessage: 'Il faut moins de 30 caractères')]
     #[Assert\Regex(
         pattern: "#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$#",
         message: 'Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre')]
-    private ?string $plainPassword;
+    private ?string $plainPassword = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[Assert\NotNull]
-    #[Assert\NotBlank]
+    #[Assert\NotNull(groups: ['user:create'])]
+    #[Assert\NotBlank(groups: ['user:create'])]
     #[Assert\Email(message: 'Addresse email non valide')]
     #[Groups(['user:read'])]
     private ?string $email = null;
@@ -76,7 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $hasRoles;
 
     #[ORM\Column]
-    private ?bool $premium = null;
+    private ?bool $premium = false;
 
     public function __construct()
     {
