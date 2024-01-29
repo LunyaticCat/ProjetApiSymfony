@@ -6,9 +6,6 @@ framework:
         # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands
         #default_uri: http://localhost
 # api/config/routes.yaml
-auth:
-    path: /auth
-    methods: ['POST']
 
 when@prod:
     framework:
