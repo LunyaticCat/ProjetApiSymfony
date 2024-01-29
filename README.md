@@ -56,11 +56,11 @@ Si le paramètre de la route est mauvais, ou que l'utilisateur n'existe pas, une
 
 Récapitulatif de l'investissement
 -
-- Gatien c'est consacré au front et a participé à l'ajout de chaqu'une des fonctionnalités de ce dernier. Il a également créé un installateur pour que chaque membre puisse installer localement sans difficulté le Front. Malgré les problèmes qui sont survenu, il a tenté au mieux de s'occuper de la gestion du projet, organiser des réunions et suivre le github Project. 
-- Gatien et Yann on pu conçevoir la structure de la base de donnée.
-- Yann a pu assister sur le refactoring du code du front et revoir sa charte graphique CSS, mettre en place la base de donnée conceptualisé sur l'API, et commencer le système de mot de passe de l'API puis à contribué au débugage de ce dernier.
-  Il a également étais responsable de préparer le rendu des projets et a fait l'intégration du projet MyAvatar au projet Front. Il a également rajouté un système de lecture d'erreur pour la page login et inscription du Front.
-- Joffrey à mise en place le projet MyAvatar afin que ce dernier puisse être lié au Front.
+- Gatien s'est consacré au front et a participé à l'ajout de chacune des fonctionnalités de ce dernier. Il a également créé un installateur pour que chaque membre puisse installer localement sans difficulté le Front. Malgré les problèmes qui sont survenu, il a tenté au mieux de s'occuper de la gestion du projet, organiser des réunions et suivre le GitHub Project. 
+- Gatien et Yann ont pu concevoir la structure de la base de données.
+- Yann a pu assister sur le refactoring du code du front et revoir sa charte graphique CSS, mettre en place la base de données conceptualisée sur l'API, et commencer le système de mot de passe de l'API puis a contribué au débugage de ce dernier.
+  Il a également été responsable de préparer le rendu des projets et a fait l'intégration du projet MyAvatar au projet Front. Il a également rajouté un système de lecture d'erreur pour la page login et inscription du Front.
+- Joffrey a mis en place le projet MyAvatar afin que ce dernier puisse être lié au Front.
 - Alexis a avancé le mot de passe de l'API.
 
 Identifiants de compte (il faut récupérer le code d'alexis puis ajouter les mot de passes à cette partie)
