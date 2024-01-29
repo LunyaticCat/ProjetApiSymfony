@@ -15,17 +15,17 @@ Liens des projets GitHub
 
 Présentation du thème choisi
 -
-Le thème que nous avons choisi étais Terraria.
-Le jeu Terraria propose des complexités intéréssante tu fait que des stacks d'items sont requis pour pouvoir conçevoir un objet, et qu'un même objet peux être conçu de plusieurs manière
-en fonction de si le monde et "Tainted" ou "Corrupted" et peuvent ainsi amener à un objet similaire pouvant être crée avec des composants différent, dans des tables différentes, ce qui mal
+Le thème que nous avons choisi était Terraria.
+Le jeu Terraria propose des complexités intéressantes du fait que des stacks d'items sont requis pour pouvoir concevoir un objet, et qu'un même objet peut être conçu de plusieurs manières
+en fonction de si le monde est "Tainted" ou "Corrupted", et peuvent ainsi amener à un objet similaire pouvant être créé avec des composants différent, dans des tables différentes, ce qui mal
 amené pourrai conduire à une explosion exponnentiel du nombre de craft stocké en base de donnée pour un seul objet.
 
 Présentation de l'API
 -
 (expliquer le système mis en place pour la bd et quels chemin utiliser)
-L'API repose sur une conceptialisation de la base de donnée dans la quel un craft d'item correspond en fait à un item_group definissent si l'objet est un item permettant le craft (table de craft) ou un composant quelconque.
-ensuite un group_fragment viens lier chaque item à leurs groupes et leurs attribut le nombre requis pour le craft. enfin le craft lie l'utilisateur qui a créer un craft à ce dernier et l'item qui lui est associé.
-on peux faire ces manipulations dans l'ordre avec les liens suivants :
+L'API repose sur une conceptualisation de la base de données dans laquelle un craft d'item correspond en fait à un item_group définissant si l'objet est un item permettant le craft (table de craft) ou un composant quelconque.
+Ensuite, un group_fragment vient lier chaque item à leurs groupes et leurs attribut le nombre requis pour le craft. Enfin, le craft lie l'utilisateur qui a créé un craft à ce dernier et l'item qui lui est associé.
+On peut faire ces manipulations dans l'ordre avec les liens suivants :
 ```
 1)   https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users
 1.5) https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/categories (optionel)
@@ -37,7 +37,7 @@ on peux faire ces manipulations dans l'ordre avec les liens suivants :
 
 Présentation du Front
 -
-La majeur partie du front se compose de requetes à l'api avec une interface. Le code pour l'affichage une famille d'items (ItemTree.vue) présente un interet particulier, il s'agit d'afficher de manière récursive un arbre de construction d'objet. La connection avec Grafana se fait par un hash d'email grace au plugin md5.
+La majeure partie du front se compose de requêtes à l'API avec une interface. Le code pour l'affichage, une famille d'items (ItemTree.vue), présente un intérêt particulier, il s'agit d'afficher de manière récursive un arbre de construction d'objet. La connexion avec MyAvatar se fait par un hash de l'email de l'utilisateur via l'algorithme MD5.
 
 
 Présentation de MyAvatar
@@ -46,11 +46,11 @@ MyAvatar est un service permettant la gestion des photos de profil des utilisate
 
 Pour récupérer la photo de profil liée à un compte, il suffit d'utiliser la route qui suit :
 
-``/avatar/{hashMD5Email}``
+`/avatar/{hashMD5Email}`
 
 Par exemple, cette route :
 
-``https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/d2da44a8f89b8f0485602e27b28a94ab``
+`https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/d2da44a8f89b8f0485602e27b28a94ab`
 
 Si le paramètre de la route est mauvais, ou que l'utilisateur n'existe pas, une photo de profil par défaut (anonyme.jpg) sera renvoyée.
 
