@@ -37,7 +37,7 @@ on peux faire ces manipulations dans l'ordre avec les liens suivants :
 
 Présentation du Front
 -
-La majeur partie du front se compose de requetes à l'api avec une interface. Le code pour l'affichage une famille d'items (ItemTree.vue) présente un interet particulier, il s'agit d'afficher de manière récursive un arbre de construction d'objet. Les fonctions qui gèrent les appels à l'api sont rassembler dans des classes dans les composents du projet. La connection avec Grafana se fait par un hash d'email grace au plugin md5.
+La majeur partie du front se compose de requetes à l'api avec une interface. Le code pour l'affichage une famille d'items (ItemTree.vue) présente un interet particulier, il s'agit d'afficher de manière récursive un arbre de construction d'objet. La connection avec Grafana se fait par un hash d'email grace au plugin md5.
 
 
 Présentation de MyAvatar
