@@ -18,8 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource(
     operations: [
         new Get(),
-        new Delete(),
-        new Post(),
+        new Delete(security: "is_granted('ROLE_USER') and object.getOwner()"),
+        new Post(security: "is_granted('ROLE_USER')"),
         new GetCollection(),
         new GetCollection(
             uriTemplate: '/items/parents/{idItem}',

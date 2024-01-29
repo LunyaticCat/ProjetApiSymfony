@@ -26,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     new GetCollection(),
     new Get(),
     new Post(validationContext: ["groups" => ["user:create"]], processor: UtilisateurProcessor::class),
-    new Delete(),
+    new Delete(security: "is_granted('ROLE_USER') and object.getOwner()"),
     new Patch(validationContext: ["groups" => ["user:update"]],processor: UtilisateurProcessor::class),
 ],
     normalizationContext: ["groups" => ["user:read"]],
